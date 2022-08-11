@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, createContext } from 'react'
 import Post from './Post'
 import Header from './Header'
 import { func } from 'prop-types'
 
 function App() {
+  const [theme, setTheme] = useState('dark')
   const [posts, setPosts] = useState(
     [
       { id: Math.random(), title: 'Title#01', subtitle: 'Subtitle#01', likes: 20, read: false },
@@ -18,6 +19,10 @@ function App() {
     ))
   }
 
+  function handleToggleTheme() {
+    setTheme((prevState) => prevState == 'dark' ? 'light' : 'dark')
+  }
+
   function handleRefresh() {
     setPosts(prevState => [
       ...prevState,
@@ -25,12 +30,14 @@ function App() {
   }
   return (
     <>
-      <Header title = "Zeca's Blog">
-
+      <Header
+      theme = {theme}
+      onToggleTheme = {handleToggleTheme}
+      title = "Zeca's Blog">
         Novidades de 2022
-        <button onClick={handleRefresh}>Atualizar</button>
+        
       </Header>
-
+      <button onClick={handleRefresh}>Atualizar</button>
       <hr/>
 
       {posts.map(post => 
@@ -38,6 +45,7 @@ function App() {
           key={post.id}
           onRemove = {handleRemovePost}
           post = {post}
+          theme = {theme}
         />
       )}
     </>
