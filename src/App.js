@@ -3,6 +3,8 @@ import Post from './Post'
 import Header from './Header'
 import { func } from 'prop-types'
 
+export const ThemeContext = createContext('dark')
+
 function App() {
   const [theme, setTheme] = useState('dark')
   const [posts, setPosts] = useState(
@@ -29,7 +31,7 @@ function App() {
       {id:Math.random(), title: `Title#0${prevState.length + 1}`, subtitle: 'Subtitle#01', likes: 20}])
   }
   return (
-    <>
+    <ThemeContext.Provider value={theme}>
       <Header
       theme = {theme}
       onToggleTheme = {handleToggleTheme}
@@ -48,7 +50,7 @@ function App() {
           theme = {theme}
         />
       )}
-    </>
+    </ThemeContext.Provider>
   )
 }
 

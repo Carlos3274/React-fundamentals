@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes, { func } from 'prop-types'
-
+import { ThemeContext } from './App'
 function Button(props) {
-console.log(props.theme)
-const theme = props.theme
+  const theme = useContext(ThemeContext)
   return (
     <button
       style={{ 
@@ -19,7 +18,6 @@ const theme = props.theme
 export default Button
 
 Button.PropTypes = {
-  theme: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onClick: PropTypes.func.isRequired,
 }

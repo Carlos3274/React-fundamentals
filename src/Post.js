@@ -7,7 +7,6 @@ function Post(props) {
     <>
       <article>
        <PostHeader
-        theme = {props.theme}
         onRemove = {props.onRemove}
         post = {{
           id: props.post.id,
@@ -26,7 +25,6 @@ function Post(props) {
 export default Post
 
 Post.propTypes = {
-  theme: PropTypes.string.isRequired,
   onRemove: PropTypes.func.isRequired,
   post: PropTypes.shape({
     id: PropTypes.number.isRequired,

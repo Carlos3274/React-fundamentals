@@ -20,3 +20,4 @@ const [fruta1, fruta2] = frutas // frutas continuará sendo frutas.
 
 
 const [color, setColor] = useState()
+
