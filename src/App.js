@@ -1,12 +1,11 @@
-import React, { useState, createContext } from 'react'
+import React, { useState } from 'react'
 import Post from './Post'
 import Header from './Header'
-import { func } from 'prop-types'
+import { ThemeProvider } from './ThemeContext'
 
-export const ThemeContext = createContext('dark')
 
 function App() {
-  const [theme, setTheme] = useState('dark')
+
   const [posts, setPosts] = useState(
     [
       { id: Math.random(), title: 'Title#01', subtitle: 'Subtitle#01', likes: 20, read: false },
@@ -21,9 +20,7 @@ function App() {
     ))
   }
 
-  function handleToggleTheme() {
-    setTheme((prevState) => prevState == 'dark' ? 'light' : 'dark')
-  }
+
 
   function handleRefresh() {
     setPosts(prevState => [
@@ -31,10 +28,7 @@ function App() {
       {id:Math.random(), title: `Title#0${prevState.length + 1}`, subtitle: 'Subtitle#01', likes: 20}])
   }
   return (
-    <ThemeContext.Provider value={{
-      theme,
-      onToggleTheme : handleToggleTheme,
-      }}>
+    <ThemeProvider> 
       <Header
       title = "Zeca's Blog">
         Novidades de 2022
@@ -50,7 +44,7 @@ function App() {
           post = {post}
         />
       )}
-    </ThemeContext.Provider>
+    </ThemeProvider>
   )
 }
 
