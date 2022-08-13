@@ -31,10 +31,11 @@ function App() {
       {id:Math.random(), title: `Title#0${prevState.length + 1}`, subtitle: 'Subtitle#01', likes: 20}])
   }
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext.Provider value={{
+      theme,
+      onToggleTheme : handleToggleTheme,
+      }}>
       <Header
-      theme = {theme}
-      onToggleTheme = {handleToggleTheme}
       title = "Zeca's Blog">
         Novidades de 2022
         
@@ -47,7 +48,6 @@ function App() {
           key={post.id}
           onRemove = {handleRemovePost}
           post = {post}
-          theme = {theme}
         />
       )}
     </ThemeContext.Provider>

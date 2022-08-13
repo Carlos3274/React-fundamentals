@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import PropTypes, { func } from 'prop-types'
 import { ThemeContext } from './App'
 function Button(props) {
-  const theme = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext)
   return (
     <button
       style={{ 
