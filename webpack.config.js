@@ -9,20 +9,33 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'public', 'index.html'),
+      template: path.resolve(__dirname, 'public', 'index.html')
     }),
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin()
   ],
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,  // Talvez o problema seja aqui
-        use: 'babel-loader',
+        exclude: /node_modules/, // Talvez o problema seja aqui
+        use: 'babel-loader'
       },
-    ],
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true
+            }
+          },
+          'sass-loader'
+        ]
+      }
+    ]
   },
   devServer: {
-    port: 3000,
-  },
+    port: 3000
+  }
 }
